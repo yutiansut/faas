@@ -8,21 +8,16 @@ import (
 
 // NewFunctionScaler create a new scaler with the specified
 // ScalingConfig
-func NewFunctionScaler(config ScalingConfig) FunctionScaler {
-	cache := FunctionCache{
-		Cache:  make(map[string]*FunctionMeta),
-		Expiry: config.CacheExpiry,
-	}
-
+func NewFunctionScaler(config ScalingConfig, functionCacher FunctionCacher) FunctionScaler {
 	return FunctionScaler{
-		Cache:  &cache,
+		Cache:  functionCacher,
 		Config: config,
 	}
 }
 
 // FunctionScaler scales from zero
 type FunctionScaler struct {
-	Cache  *FunctionCache
+	Cache  FunctionCacher
 	Config ScalingConfig
 }
 
@@ -117,7 +112,7 @@ func (f *FunctionScaler) Scale(functionName, namespace string) FunctionScaleResu
 
 			if queryResponse.AvailableReplicas > 0 {
 
-				log.Printf("[Scale] function=%s 0 => %d successful - %f seconds",
+				log.Printf("[Scale] function=%s 0 => %d successful - %fs",
 					functionName, queryResponse.AvailableReplicas, totalTime.Seconds())
 
 				return FunctionScaleResult{

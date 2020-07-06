@@ -14,6 +14,7 @@ import (
 	"strings"
 	"time"
 
+	"github.com/openfaas/faas/gateway/pkg/middleware"
 	"github.com/openfaas/faas/gateway/types"
 )
 
@@ -43,7 +44,7 @@ func MakeForwardingProxyHandler(proxy *types.HTTPClientReverseProxy,
 	notifiers []HTTPNotifier,
 	baseURLResolver BaseURLResolver,
 	urlPathTransformer URLPathTransformer,
-	serviceAuthInjector AuthInjector) http.HandlerFunc {
+	serviceAuthInjector middleware.AuthInjector) http.HandlerFunc {
 
 	writeRequestURI := false
 	if _, exists := os.LookupEnv("write_request_uri"); exists {
@@ -53,8 +54,11 @@ func MakeForwardingProxyHandler(proxy *types.HTTPClientReverseProxy,
 	return func(w http.ResponseWriter, r *http.Request) {
 		baseURL := baseURLResolver.Resolve(r)
 		originalURL := r.URL.String()
-
 		requestURL := urlPathTransformer.Transform(r)
+
+		for _, notifier := range notifiers {
+			notifier.Notify(r.Method, requestURL, originalURL, http.StatusProcessing, "started", time.Second*0)
+		}
 
 		start := time.Now()
 
@@ -66,7 +70,7 @@ func MakeForwardingProxyHandler(proxy *types.HTTPClientReverseProxy,
 		}
 
 		for _, notifier := range notifiers {
-			notifier.Notify(r.Method, requestURL, originalURL, statusCode, seconds)
+			notifier.Notify(r.Method, requestURL, originalURL, statusCode, "completed", seconds)
 		}
 	}
 }
@@ -105,7 +109,7 @@ func forwardRequest(w http.ResponseWriter,
 	requestURL string,
 	timeout time.Duration,
 	writeRequestURI bool,
-	serviceAuthInjector AuthInjector) (int, error) {
+	serviceAuthInjector middleware.AuthInjector) (int, error) {
 
 	upstreamReq := buildUpstreamRequest(r, baseURL, requestURL)
 	if upstreamReq.Body != nil {
@@ -120,7 +124,7 @@ func forwardRequest(w http.ResponseWriter,
 		log.Printf("forwardRequest: %s %s\n", upstreamReq.Host, upstreamReq.URL.String())
 	}
 
-	ctx, cancel := context.WithTimeout(context.Background(), timeout)
+	ctx, cancel := context.WithTimeout(r.Context(), timeout)
 	defer cancel()
 
 	res, resErr := proxyClient.Do(upstreamReq.WithContext(ctx))

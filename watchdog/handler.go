@@ -215,9 +215,9 @@ func pipeRequest(config *WatchdogConfig, w http.ResponseWriter, r *http.Request,
 	}
 
 	if len(bytesWritten) > 0 {
-		log.Printf("%s - Duration: %f seconds", bytesWritten, execDuration)
+		log.Printf("%s - Duration: %fs", bytesWritten, execDuration)
 	} else {
-		log.Printf("Duration: %f seconds", execDuration)
+		log.Printf("Duration: %fs", execDuration)
 	}
 }
 
@@ -236,6 +236,10 @@ func getAdditionalEnvs(config *WatchdogConfig, r *http.Request, method string) [
 		// Deprecation notice: Http_ContentLength will be deprecated
 		envs = append(envs, fmt.Sprintf("Http_ContentLength=%d", r.ContentLength))
 		envs = append(envs, fmt.Sprintf("Http_Content_Length=%d", r.ContentLength))
+
+		if len(r.TransferEncoding) > 0 {
+			envs = append(envs, fmt.Sprintf("Http_Transfer_Encoding=%s", r.TransferEncoding[0]))
+		}
 
 		if config.writeDebug {
 			log.Println("Query ", r.URL.RawQuery)

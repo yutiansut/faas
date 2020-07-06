@@ -1,5 +1,5 @@
 provider:
-  name: faas
+  name: openfaas
 
 functions:
   alpinefunction:
@@ -46,6 +46,10 @@ functions:
     lang: go
     handler: ./haveibeenpwned
     image: functions/haveibeenpwned:0.13.0
+  hey:
+    lang: dockerfile
+    handler: ./hey
+    image: functions/hey:0.1.0
   hostnameintent:
     lang: dockerfile
     handler: ./HostnameIntent
@@ -90,3 +94,9 @@ functions:
     lang: go
     handler: ./business-strategy-generator
     image: functions/business-strategy-generator:0.13.0
+  nodeinfo-http:
+    lang: node12
+    handler: ./nodeinfo-http
+    image: functions/nodeinfo-http:latest
+    environment:
+      RAW_BODY: true

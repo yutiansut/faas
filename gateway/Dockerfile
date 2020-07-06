@@ -1,17 +1,18 @@
-FROM golang:1.11 as build
+FROM teamserverless/license-check:0.3.6 as license-check
+
+FROM golang:1.13 as build
+
+ENV GO111MODULE=off
 ENV CGO_ENABLED=0
 
 ARG GIT_COMMIT_SHA
 ARG GIT_COMMIT_MESSAGE
 ARG VERSION='dev'
 ARG ARCH="x86_64"
-ARG CGO_ENABLED=0
 ARG GOOS=linux
 ARG GOARM
 
-RUN curl -sLSf \
-  https://raw.githubusercontent.com/teamserverless/license-check/master/get.sh | sh \
-  && mv ./license-check /usr/bin/
+COPY --from=license-check /license-check /usr/bin/
 
 WORKDIR /go/src/github.com/openfaas/faas/gateway
 
@@ -27,7 +28,8 @@ COPY queue          queue
 COPY plugin         plugin
 COPY version        version
 COPY scaling        scaling
-COPY server.go      .
+COPY pkg            pkg
+COPY main.go      .
 
 # Run a gofmt and exclude all vendored code.
 RUN license-check -path ./ --verbose=false "Alex Ellis" "OpenFaaS Authors" "OpenFaaS Author(s)" \
@@ -40,7 +42,7 @@ RUN license-check -path ./ --verbose=false "Alex Ellis" "OpenFaaS Authors" "Open
     -X github.com/openfaas/faas/gateway/types.Arch=${ARCH}"\
     -a -installsuffix cgo -o gateway .
 
-FROM alpine:3.10
+FROM alpine:3.11
 
 ARG ARCH="x86_64"
 

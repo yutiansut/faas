@@ -189,7 +189,11 @@ The concept of `vendoring` is used in projects written in Go. This means that a 
 
 The chosen tool for vendoring code in the project is [dep](https://github.com/golang/dep).
 
-> Note: despite the availability of [Go modules](https://github.com/golang/go/wiki/Modules) in Go 1.11, they are not being used in the project at this time. If and when the decision is made to move, a complete overhaul of all repositories will need to be made in a coordinated fashion, including regression and integration testing. This is not a trivial task.
+> Note: despite the availability of [Go modules](https://github.com/golang/go/wiki/Modules) in Go 1.11, they are not being used in the project at this time. If and when the decision is made to move, a complete overhaul of all repositories will need to be made in a coordinated fashion including: CI, releases, unit-, integration- and e2e-tests. This is not a trivial amount of effort.
+
+**An update on Go modules*
+
+A limited effort is being made by the maintainers to move some projects to Go Modules and Go 1.13. This approach will retain the use of the vendor folder, which is a valid strategy for adopting Go modules and is [documented in the Go wiki](https://github.com/golang/go/wiki/Modules). There are different trade-offs between using a vendor folder and not. If you do not understand these trade-offs well, you may explore the topic at your own leisure. We are not inviting the broader community to submit PRs to convert additional projects at this time.
 
 ### How are releases made?
 
@@ -232,18 +236,14 @@ In the OpenFaaS community there are four levels of structure or maintainership:
 
 The Core Team includes:
 
-- Alex Ellis (@alexellis)
-- Richard Gee (@rgee0)
-- Stefan Prodan (@stefanprodan)
-- Lucas Roesler (@LucasRoesler)
-- Burton Rheutan (@burtonr)
-- Ed Wilde (@ewilde)
+- Alex Ellis (@alexellis) - Lead
+- Lucas Roesler (@LucasRoesler) - SME for logs, provider model and secrets
 
 The Core Team have the ear of the Project Lead. They help with strategy, project maintenance, community management, and make a regular commitment of time to the project on a weekly basis. The Core Team will usually be responsible for, or be a subject-matter-expert (SME) for a sub-system of OpenFaaS. Core Team may be granted write (push) access to one or more sub-systems.
 
 The Core Team gain access to a private *core* channel and are required to participate on a regular basis.
 
-The Core Team have the same expectations and perks of the Membership Team, in addition will need to keep in close contact with the rest of the Core Team and the Project Lead.
+The Core Team have the same responsibilities and perks of the Membership Team, in addition will need to keep in close contact with the rest of the Core Team and the Project Lead.
 
 * Core Team are expected to attend 1:1 Zoom calls with the Project Lead up to once per month
 * Core Team members will notify the Project Lead and Core Team of any leave of a week or more and set a status in Slack of "away".
@@ -260,7 +260,7 @@ The Members Team are contributors who are well-known to the community with a tra
 * testing and reviewing pull requests
 * joining contributor meetings and supporting new contributors
 
-> Note: An essential skill for being in a team is communication. If you cannot communicate with your team on a regular basis, then membership may not be for you and you are welcome to contribute as community.
+> Note: An essential skill for being in a team is communication. If it is not possible to communicate on a regular basis then, then membership may not be for you. You are welcome to contribute as part of the wider community.
 
 Varying levels of write access are made available via the project bot [Derek](https://github.com/alexellis/derek) to help regular contributors transition to the Members Team.
 
@@ -284,7 +284,7 @@ The Members Team are expected to:
 * comment on and engage with project proposals
 * attend occasional 1:1 meetings with members of the Core Team or the Project Lead
 
-This group is intended to be an active team that shares the load and collaborates together. This means engaging in topics on Slack, encouraging other teammates, sharing ideas, helping the users and raising issues with the Core Team.
+This group is intended to be an active team that shares the load and collaborates together. This means engaging in topics on Slack, working with other teammates, sharing ideas, helping the users and raising issues with the Core Team.
 
 The Members Team will notify their team in the *members* channel about any planned leave of a week or more and set a status in Slack of "away".
 
@@ -300,7 +300,7 @@ If you can no-longer commit to being part of a team, then you may move to Commun
 
 #### Stepping-down and emeritus status
 
-After stepping-down, you will have an [emeritus status](https://www.lexico.com/en/definition/emeritus) and will be listed in the [BACKERS.md](/BACKERS.md) file and will have a place on the team page.
+After stepping-down, you may request to have an [emeritus status](https://www.lexico.com/en/definition/emeritus) and to be listed in the [BACKERS.md](/BACKERS.md) file for a period of time.
 
 > emeritus: (of the former holder of an office, especially a university professor) having retired but allowed to retain their title as an honour.
 
@@ -349,13 +349,26 @@ There is an Slack community which you are welcome to join to discuss OpenFaaS, O
 
 [Join Slack here](https://docs.openfaas.com/community/)
 
+Getting the best out of Slack
+
+* Explore the channels and post your question or comment into one of them
+* Don't post the same question into multiple channels if you don't get an answer immediately
+* Slack is asynchronous and you may not receive an answer to your question. Commercial support is available, but you are also welcome to ask the question again or in a different way after a reasonable amount of time has passed.
+* Shorter, specific questions are more likely to be answered than longer bodies of text
+* If you can share a code example, it may improve the chances of getting help. There is no need to share confidential code, instead try to create a small sample that reproduces the issue.
+
+* Please be kind to your other participants within the community and bear in mind that English may not be everybody's first language.
+* Moderators reserve the right to remove messages which may be deemed to be antagonistic, lacking context, a plug for a product, or off-topic. 
+
 ### Roadmap
 
 * See the [2019 Project Update](https://www.openfaas.com/blog/project-update/)
 
 * Browse open issues in [openfaas/faas](https://github.com/openfaas/faas/issues)
 
-* Sign-up for the [2019 Trello board](http://bit.ly/2LGl6nd)
+* Join the [2020 Roadmap on Trello](https://trello.com/invite/b/5OpMyrBP/ade103a10ae1e38eb5d3eee7955260a9/2020-openfaas-roadmap)
+
+For commercial users, please feel free to ask about support, backlog prioritisation and feature development. Email sales@openfaas.com.
 
 ## License
 

@@ -1,9 +1,12 @@
-FROM golang:1.11-alpine3.10 as build
+FROM teamserverless/license-check:0.3.6 as license-check
+
+FROM golang:1.13-alpine3.11 as build
+
+ENV GO111MODULE=off
 ENV CGO_ENABLED=0
 
 RUN apk add --no-cache curl ca-certificates
-RUN curl -sLSf https://raw.githubusercontent.com/teamserverless/license-check/master/get.sh | sh \
-  && mv ./license-check /usr/bin/
+COPY --from=license-check /license-check /usr/bin/
 
 WORKDIR /go/src/handler
 COPY . .
@@ -16,7 +19,7 @@ RUN license-check -path ./ --verbose=false "OpenFaaS Authors" "OpenFaaS Author(s
     go build --ldflags "-s -w" -a -installsuffix cgo -o handler . && \
     go test $(go list ./... | grep -v /vendor/) -cover
 
-FROM alpine:3.10 as ship
+FROM alpine:3.11 as ship
 # Add non-root user
 RUN addgroup -S app && adduser -S -g app app \
     && mkdir -p /home/app \

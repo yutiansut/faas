@@ -1,6 +1,8 @@
-# Project backers
+# OpenFaaS Project Backers
 
 OpenFaaS is licensed as MIT and completely Open Source and free to use. However the amount of effort needed to maintain and develop new features is not sustainable without proper financial backing.
+
+Companies using OpenFaaS with their products or projects are encouraged to join at Gold or Platinum tier. Commercial support is also available.
 
 ## `#FaaSFriday`
 
@@ -56,74 +58,29 @@ Email [sales@openfaas.com](mailto:sales@openfaas.com) for a quote.
 
 #### Platinum Sponsors (homepage sponsor)
 
-<a href="https://digitalocean.com"><img alt="DigitalOcean" src="https://www.openfaas.com/images/sponsors/digitalocean.svg" width="125px" /></a>
+<a href="https://digitalocean.com"><img alt="DigitalOcean" src="https://www.openfaas.com/images/sponsors/digitalocean.svg" width="110px" /></a>
 
-<a href="https://rancher.com"><img alt="Rancher" src="https://www.openfaas.com/images/sponsors/rancher-logo-stacked-color.svg" width="125px" /></a>
-
-<a href="https://dx.no"><img alt="DX" src="https://www.openfaas.com/images/users-logos/dx.png" width="125px" /></a>
+<a href="https://rancher.com"><img alt="Rancher" src="https://www.openfaas.com/images/sponsors/rancher-logo-stacked-color.svg" width="110px" /></a>
 
 #### Gold Sponsors (homepage sponsor)
 
-<a href="https://civo.com"><img alt="Civo" src="https://www.openfaas.com/images/sponsors/civo.svg" width="125px" /></a>
+Be the first
 
 #### Bronze Sponsors
 
-<a href="https://asyncy.com"><img alt="ASYNCY" src="https://www.openfaas.com/images/sponsors/asyncy.png" width="100px" /></a>
+<a href="https://garden.io"><img alt="Garden.io" src="https://www.openfaas.com/images/sponsors/garden.png" width="90px" /></a>
 
-<a href="https://garden.io"><img alt="Garden.io" src="https://www.openfaas.com/images/sponsors/garden.png" width="100px" /></a>
+<a href="https://www.form3.tech"><img alt="Form3 Tech" src="https://docs.openfaas.com/images/logos/form3.svg" width="90px" /></a>
 
-<a href="https://www.contiamo.com"><img alt="Contiamo" src="https://docs.openfaas.com/images/logos/contiamo.svg" width="100px" /></a>
+<a href="https://ratehub.ca"><img alt="ratehub.ca" src="https://www.ratehub.ca/images/logo-small-right.png" width="90px" /></a>
 
-<a href="https://www.form3.tech"><img alt="Form3 Tech" src="https://docs.openfaas.com/images/logos/form3.svg" width="100px" /></a>
+<a href="https://github.com/opvizordz">opvizordz</a>
 
-<a href="https://dragonchain.com"><img alt="Dragonchain" src="https://www.openfaas.com/images/users-logos/dragonchain.svg" width="100px" /></a>
+<a href="https://cloudux.io/">cloudux.io</a>
 
-* [Brandon Lamb](https://github.com/brandonlamb)
+## Individual backers
 
-## Individual backers (Patreon / GitHub)
+As an individual your support can go a long way, please join on GitHub Sponsors.
 
-Whatever tier, whether 5 USD or 500 USD, if you're a backer on Patreon, or a GitHub Sponsor, then please send a PR to have your name listed below:
+* View or join our [GitHub sponsors](https://insiders.openfaas.io/)
 
-* Andrew Cornies
-* Benjamin Neil
-* Chad Taylor
-* Christian Sakshaug
-* Contiamo
-* David Salek
-* Garden Germany GmbH
-* Johnny MKHAEL 
-* Julio
-* Lewis Bowman
-* Mark Jeromin
-* Matias Pan
-* Martin Dekov
-* Murugappan Sevugan Chetty
-* Owen Dall Sotomayor
-* Patricio Diaz
-* Pav Jimanov
-* Rafael Barbosa
-* Richard Petersen-Hall
-* Ruan Bekker
-* Scott Rosenberg
-* Sergey Radov
-* Sivaramakrishnan Malikkal
-* Steve Peak
-* Weston Steimel
-* Younes Amardaya
-
-See the complete list of *Public* sponsors on GitHub and:
-
-* [Sponsor today](https://github.com/users/alexellis/sponsorship)
-
-### Hall of fame
-
-The hall of fame shows contributors who made a sustained positive impact on the project and community, but are no longer able to remain active in Open Source or OpenFaaS.
-
-* John Mccabe
-* Austin Frey
-* Robbie Page
-* Jock Reed
-* Eric Stoekl
-* Ken Fukuyama
-* Richard Gee
-* Ivana Yocheva

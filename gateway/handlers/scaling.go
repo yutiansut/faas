@@ -24,9 +24,7 @@ func getNamespace(defaultNamespace, fullName string) (string, string) {
 // be called. If the function is not ready after the configured
 // amount of attempts / queries then next will not be invoked and a status
 // will be returned to the client.
-func MakeScalingHandler(next http.HandlerFunc, config scaling.ScalingConfig, defaultNamespace string) http.HandlerFunc {
-
-	scaler := scaling.NewFunctionScaler(config)
+func MakeScalingHandler(next http.HandlerFunc, scaler scaling.FunctionScaler, config scaling.ScalingConfig, defaultNamespace string) http.HandlerFunc {
 
 	return func(w http.ResponseWriter, r *http.Request) {
 
@@ -57,6 +55,6 @@ func MakeScalingHandler(next http.HandlerFunc, config scaling.ScalingConfig, def
 			return
 		}
 
-		log.Printf("[Scale] function=%s.%s 0=>N timed-out after %f seconds\n", functionName, namespace, res.Duration.Seconds())
+		log.Printf("[Scale] function=%s.%s 0=>N timed-out after %fs\n", functionName, namespace, res.Duration.Seconds())
 	}
 }
